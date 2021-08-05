@@ -21,9 +21,10 @@ export function TaskList() {
         title: newTaskTitle,
         isComplete: false,
       }
-      let newList = [...tasks];
-      newList.push(task); 
-      setTasks(newList);
+      let newTasks = [...tasks];
+      newTasks.push(task); 
+      updateStateTasks(newTasks);
+      setNewTaskTitle("");   
     }
   }
 
@@ -35,12 +36,16 @@ export function TaskList() {
       }
       return {...task}
     })
-    setTasks(newTasks);
+    updateStateTasks(newTasks);
   }
 
   function handleRemoveTask(id: number) {
     let newTasks = [...tasks];
-    newTasks = newTasks.filter(task => task.id !== id)
+    newTasks = newTasks.filter(task => task.id !== id);
+    updateStateTasks(newTasks);
+  }
+
+  function updateStateTasks(newTasks: Task[]){
     setTasks(newTasks);
   }
 
